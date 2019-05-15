@@ -15,8 +15,8 @@ func NewSqlHandler() *SqlHandler {
 	if err != nil {
 		panic(err.Error())
 	}
-	sqlHandler := new(sqlHandler)
-	sqlHandler.conn = conn
+	sqlHandler := new(SqlHandler)
+	sqlHandler.Conn = conn
 	return sqlHandler
 }
 
@@ -30,7 +30,7 @@ func (handler *SqlHandler) Execute(statement string, args ...interface{}) ( data
 	return res, err
 }
 
-func (handler *SqlHandler) Query(statement string, args ...interface{}) (row database.Row, error) {
+func (handler *SqlHandler) Query(statement string, args ...interface{}) (database.Row, error) {
 	rows, err := handler.Conn.Query(statement, args...)
 	if err != nil {
 		return new(SqlRow), err
